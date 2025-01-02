@@ -1,0 +1,117 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'assets/images/favicon.png' %}" rel="icon" type="image/png">
+    <title>sign In - Social App</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'assets/css/icons.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/uikit.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/tailwind.css' %}">
+
+</head>
+
+<body class="bg-gray-100">
+
+
+    <div id="wrapper" class="flex flex-col justify-between h-screen">
+
+        <!-- header-->
+        <div class="bg-white py-4 shadow dark:bg-gray-800">
+            <div class="max-w-6xl mx-auto">
+
+
+                <div class="flex items-center lg:justify-between justify-around">
+
+                    <a href="trending.html">
+                       <b><h1 style="font-size: 1.5rem;">Sharify</h1></b>
+                    </a>
+
+                    <div class="capitalize flex font-semibold hidden lg:block my-2 space-x-3 text-center text-sm">
+                        
+                        <a href="/signup" class="bg-pink-500 pink-500 px-6 py-3 rounded-md shadow text-white">Register</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Content-->
+        <main class="flex-grow">
+            <section class="lg:p-12 max-w-md mx-auto p-6 space-y-6 bg-white shadow-md rounded-lg">
+                <h1 class="text-3xl font-semibold text-gray-800">Welcome Back!</h1>
+                <p class="text-gray-600">Please sign in to your account.</p>
+
+            <div class="p-6">
+                <div>
+                    {% for message in messages %}
+                    <p class="messages">{{ message }}</p>
+                    {% endfor %}
+                </div>
+
+
+                <form action="" method="POST" class="space-y-4">
+                    {% csrf_token %}
+                    <!-- Username -->
+                    <div class="lg:p-12 max-w-md max-w-xl lg:my-0 my-12 mx-auto p-6 space-y-6 bg-white rounded-lg shadow-md">
+                        <h1 class="lg:text-3xl text-xl font-semibold mb-6 text-gray-800">Log in</h1>
+                        <form action="/" class="space-y-4">
+                            <!-- Username -->
+                            <input type="text" name = "username" placeholder="Username" class="w-full bg-gray-200 mb-2 shadow-none dark:bg-gray-800 rounded-lg p-3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-500">
+                            <!-- Password -->
+                            <input type="password"  name = "password" placeholder="Password" class="w-full bg-gray-200 mb-2 shadow-none dark:bg-gray-800 rounded-lg p-3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-500">
+                            <!-- Remember Me & Forgot Password -->
+                            <!--div class="flex justify-between items-center">
+                                <div class="flex items-center">
+                                    <input type="checkbox" id="remember" name="remember" class="h-4 w-4 text-pink-500 border-gray-300 rounded focus:ring-pink-500">
+                                    <label for="remember" class="ml-2 text-gray-700">Remember Me</label>
+                                </div>
+                                <a href="#" class="text-pink-500 text-sm hover:underline">Forgot Password?</a>
+                            </div>-->
+                            <!-- Login Button -->
+                            <button type="submit" class="bg-gradient-to-br from-pink-500 to-red-400 py-3 rounded-md text-white text-xl w-full hover:shadow-lg focus:ring-4 focus:ring-pink-300">
+                                Login
+                            </button>
+                            <!-- Sign Up Link -->
+                            <div class="text-center mt-5 space-x-2">
+                                <p class="text-base">Don't have an account? 
+                                    <a href="/signup" class="text-pink-500 font-semibold hover:underline">Sign up now</a>
+                                </p>
+                            </div>
+                        </form>
+                    </div>
+                    </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-gray-100 py-4">
+            <div class="max-w-6xl mx-auto flex flex-col lg:flex-row items-center justify-between text-gray-600 text-sm space-y-3 lg:space-y-0">
+                <div class="flex space-x-4">
+                    <a href="#" class="hover:underline">About</a>
+                    <a href="#" class="hover:underline">Help</a>
+                    <a href="#" class="hover:underline">Terms</a>
+                    <a href="#" class="hover:underline">Privacy</a>
+                </div>
+                <p>&copy; 2024 Social App. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="{% static 'assets/js/tippy.all.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'assets/js/uikit.js' %}"></script>
+    <script src="{% static 'assets/js/simplebar.js' %}"></script>
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+</body>
+
+</html>

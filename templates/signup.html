@@ -1,0 +1,177 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'assets/images/favicon.png' %}" rel="icon" type="image/png">
+    <title>Sign Up - Social App</title>
+    <link rel="stylesheet" href="{% static 'assets/css/icons.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/uikit.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/tailwind.css' %}">
+    <style>
+        body {
+            background: linear-gradient(to bottom right, #ff7eb3, #ff758c, #ff6b7d, #ff6170);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Roboto', sans-serif;
+        }
+        nav {
+            width: 100%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center; 
+            padding: 0.1rem;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0)
+
+        }
+
+
+        #wrapper {
+            background: #ffffff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        h1 {
+            background: linear-gradient(to right, #ff758c, #ff6170);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .bg-gradient {
+            background: linear-gradient(to right, #ff758c, #ff6170);
+        }
+
+        input {
+            transition: all 0.3s ease;
+        }
+
+        input:focus {
+            outline: none;
+            border: 2px solid #ff758c;
+            background: #ffe6eb;
+        }
+
+        button {
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s, background 0.3s, box-shadow 0.3s;
+        }
+
+        button:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(to right, #ff6170, #ff758c);
+        }
+
+        a {
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #ff6170;
+        }
+
+        .messages {
+            color: #ff6170;
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            margin-top: 2rem;
+            color: #777;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+<nav class="bg-white shadow-md">
+    <div class="container mx-auto flex items-center justify-between px-6 py-4">
+        <!-- Logo -->
+        <a href="#" class="text-2xl font-bold text-pink-600 hover:text-red-400">Social App</a>
+
+        <!-- Navigation Links -->
+        <!--div class="flex space-x-8 text-gray-600 font-medium">
+            <a href="#" class="hover:text-pink-500 transition">Home</a>
+            <a href="#" class="hover:text-pink-500 transition">About</a>
+            <a href="#" class="hover:text-pink-500 transition">Contact</a>
+        </div> -->
+
+        <!-- Login Button -->
+        <a href="/signin" class="bg-pink-500 text-white px-5 py-2 rounded-lg shadow-md hover:bg-red-400 transition">
+            Login
+        </a>
+    </div>
+</nav>
+
+    <div id="wrapper" class="w-full max-w-md mx-auto p-6">
+        <!-- Header -->
+        <div class="text-center py-6">
+            <h1 class="text-3xl font-bold">Welcome to Social App</h1>
+            <p class="text-sm text-gray-500">Join us and start connecting with your friends!</p>
+        </div>
+
+        <!-- Content -->
+        <div class="p-6">
+            <div>
+                {% for message in messages %}
+                <p class="messages">{{ message }}</p>
+                {% endfor %}
+            </div>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div class="mb-4">
+                    <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+                    <input id="username" name="username" type="text" required placeholder="Your username"
+                        class="w-full bg-gray-200 mt-1 shadow-sm border rounded-md py-2 px-4">
+                </div>
+                <div class="mb-4">
+                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <input id="email" name="email" type="email" required placeholder="you@example.com"
+                        class="w-full bg-gray-200 mt-1 shadow-sm border rounded-md py-2 px-4">
+                </div>
+                <div class="mb-4">
+                    <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                    <input id="password" name="password" type="password" required placeholder="Password"
+                        class="w-full bg-gray-200 mt-1 shadow-sm border rounded-md py-2 px-4">
+                    <small class="text-gray-500">Use 8 or more characters with a mix of letters, numbers & symbols.</small>
+                </div>
+                <div class="mb-4">
+                    <label for="confirm_password" class="block text-sm font-medium text-gray-700">Confirm Password</label>
+                    <input id="confirm_password" name="confirm_password" type="password" required placeholder="Confirm Password"
+                        class="w-full bg-gray-200 mt-1 shadow-sm border rounded-md py-2 px-4">
+                </div>
+                <div class="flex justify-start my-4 space-x-1">
+                    <div class="checkbox">
+                        <input type="checkbox" id="checkbox1" checked>
+                        <label for="checkbox1"><span class="checkbox-icon"></span> I Agree</label>
+                    </div>
+                    <a href="#">Terms and Conditions</a>
+                </div>
+
+                <button type="submit" class="bg-gradient text-white text-xl w-full py-3 rounded-md">Sign Up</button>
+                <p class="text-center mt-4 text-sm">Already have an account? <a href="/"
+                        class="text-blue-500">Login</a></p>
+            </form>
+        </div>
+
+        <!-- Footer -->
+        <footer class="text-center">
+            <p class="text-sm">&copy; 2024 Social App. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+
+</html>
